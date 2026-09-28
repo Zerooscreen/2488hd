@@ -6,7 +6,7 @@ const { head, layout, posterCard, genreRow, trailerBlock, castGrid, similarGrid,
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const SITE_URL = process.env.SITE_URL || 'https://dunung4khd.up.railway.app';
+const SITE_URL = process.env.SITE_URL || 'https://2488hdonline.up.railway.app';
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -387,7 +387,7 @@ app.get('/person/:id/:slug?', async (req, res) => {
     `;
 
     const headHtml = head({
-      title: `${person.name} · ประวัติ ผลงานและข้อมูลนักแสดง · Dunung4Khd`,
+      title: `${person.name} · ประวัติ ผลงานและข้อมูลนักแสดง · 2488hd`,
       description: `ประวัติและผลงานการแสดงของ ${person.name} ข้อมูลภาพยนตร์และซีรีส์ทั้งหมดที่ร่วมแสดง`,
       url: `${SITE_URL}/person/${id}/${encodeURIComponent(correctSlug)}`,
       image: img(person.profile_path, 'w780'),
