@@ -4,7 +4,7 @@ const { tmdb, img, slugify } = require('./lib/tmdb');
 const { head, layout, posterCard, genreRow, trailerBlock, castGrid, similarGrid, watchButton, escapeHtml, movieJsonLd, tvJsonLd, sideBannerAd, nativeBannerAd, DEFAULT_TITLE, DEFAULT_DESC, SITE_NAME } = require('./lib/render');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 const SITE_URL = process.env.SITE_URL || 'https://2488hdonline.up.railway.app';
 
@@ -32,7 +32,7 @@ function seoTitle(kind, title, year, epNumber = null, isEnded = false) {
   } else {
     const y = year || '2026';
     if (epNumber !== null) {
-      constจบ = isEnded ? ' (จบ)' : '';
+      const จบ = isEnded ? ' (จบ)' : '';
       return `ดูซีรี่ย์ ${title} (${y}) อรุณรุ่ง Ep.${epNumber}${จบ}`;
     } else {
       return `ดูซีรี่ย์ ${title} (${y}) อรุณรุ่ง`;
@@ -305,7 +305,6 @@ app.get('/tv/:id/season/:season/episode/:episode', async (req, res) => {
     const totalEpInSeason = (seasonDetail.episodes || []).length;
     const isLastEpisode = parseInt(episode) === totalEpInSeason && isEnded;
 
-    // Menggunakan pemutar video embed eksternal (2embed) agar otomatis memutar video berdasarkan ID, season, dan episode
     const embedUrl = `https://www.2embed.cc/embedtv/${id}&s=${season}&e=${episode}`;
 
     const bodyHtml = `
@@ -325,7 +324,6 @@ app.get('/tv/:id/season/:season/episode/:episode', async (req, res) => {
         </div>
       </div>
 
-      <!-- PLAYER VIDEO EMBED -->
       <div class="section-block">
         <h3>รับชมตอนที่ ${episode}</h3>
         <div style="position:relative; width:100%; padding-bottom:56.25%; background:#000; border-radius:12px; overflow:hidden;">
